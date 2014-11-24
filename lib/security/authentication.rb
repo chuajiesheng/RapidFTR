@@ -37,7 +37,7 @@ module Security
     end
 
     def clear_current_user_if_expired
-      if !logged_in? then
+      unless logged_in?
         session[:rftr_session_id] = nil
       end
     end
