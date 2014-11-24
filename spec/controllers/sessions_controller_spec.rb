@@ -4,7 +4,7 @@ describe SessionsController, :type => :controller do
 
   it 'should respond with text ok' do
     expect(controller).not_to receive(:extend_session_lifetime)
-    expect(controller).not_to receive(:check_authentication)
+    expect(controller).not_to receive(:check_user_session)
     get :active
     expect(response.body).to eq('OK')
   end

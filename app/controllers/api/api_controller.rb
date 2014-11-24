@@ -2,7 +2,7 @@ module Api
   class ApiController < ActionController::Base
     include Security::Authentication
 
-    before_action :check_authentication
+    before_action :check_user_session
     before_action :check_device_blacklisted
     before_action :extend_session_lifetime
     before_action :current_user

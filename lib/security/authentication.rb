@@ -36,15 +36,14 @@ module Security
       request && !session_expired? && current_session && current_user
     end
 
-    def clear_current_user
+    def clear_current_user_if_expired
       if !logged_in? then
         session[:rftr_session_id] = nil
       end
     end
 
-    # TODO: Rename to check_expiry or logged_in! something
-    def check_authentication
-      logged_in? || clear_current_user || fail(ErrorResponse.unauthorized('session.has_expired'))
+    def check_user_session
+      logged_in? || clear_current_user_if_expired || fail(ErrorResponse.unauthorized('session.has_expired'))
     end
   end
 end

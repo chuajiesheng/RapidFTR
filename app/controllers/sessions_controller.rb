@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  skip_before_action :check_authentication, :only => %w(new create active)
+  skip_before_action :check_user_session, :only => %w(new create active)
   skip_before_action :extend_session_lifetime, :only => %w(new create active)
 
   # GET /sessions/new

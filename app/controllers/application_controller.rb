@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
 
   include Security::Authentication
 
-  before_action :check_authentication
+  before_action :check_user_session
   before_action :extend_session_lifetime
   before_action :set_locale
   around_action :set_current_user

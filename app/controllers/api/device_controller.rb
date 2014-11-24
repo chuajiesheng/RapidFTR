@@ -1,7 +1,7 @@
 module Api
   class DeviceController < ApiController
     skip_before_action :check_device_blacklisted
-    skip_before_action :check_authentication
+    skip_before_action :check_user_session
 
     def blacklisted
       params[:imei] ||= request.headers['X-FTR-Imei']

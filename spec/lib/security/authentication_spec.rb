@@ -30,27 +30,27 @@ module Security
     end
 
     it 'should check successful authentication' do
-      expect(@controller.send(:check_authentication)).to be_a User
+      expect(@controller.send(:check_user_session)).to be_a User
     end
 
     it 'should raise ErrorResponse if no session ID' do
       expect do
         @controller.session[:rftr_session_id] = nil
-        @controller.send :check_authentication
+        @controller.send :check_user_session
       end.to raise_error(ErrorResponse, I18n.t('session.has_expired'))
     end
 
     it 'should raise ErrorResponse if no Access Timestamp' do
       expect do
         @controller.session[:last_access_time] = nil
-        @controller.send :check_authentication
+        @controller.send :check_user_session
       end.to raise_error(ErrorResponse, I18n.t('session.has_expired'))
     end
 
     it 'should raise ErrorResponse if access time expired' do
       expect do
         @controller.session[:last_access_time] = 6.minutes.ago.rfc2822
-        @controller.send :check_authentication
+        @controller.send :check_user_session
       end.to raise_error(ErrorResponse, I18n.t('session.has_expired'))
     end
 
@@ -59,7 +59,7 @@ module Security
         mock_session = Session.new
         mock_session.stub :device_blacklisted? => true
         @controller.stub :current_session => mock_session
-        @controller.send :check_authentication
+        @controller.send :check_user_session
       end.to raise_error(ErrorResponse)
     end
 

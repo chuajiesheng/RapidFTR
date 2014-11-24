@@ -1,6 +1,6 @@
 module Api
   class SessionsController < ApiController
-    skip_before_action :check_authentication, :check_device_blacklisted, :only => [:login, :register]
+    skip_before_action :check_user_session, :check_device_blacklisted, :only => [:login, :register]
 
     def login
       @login = Login.new(params)

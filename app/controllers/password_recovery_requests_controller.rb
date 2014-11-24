@@ -1,5 +1,5 @@
 class PasswordRecoveryRequestsController < ApplicationController
-  skip_before_action :check_authentication
+  skip_before_action :check_user_session
 
   def new
     @password_recovery_request = PasswordRecoveryRequest.new

@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Api::DeviceController, :type => :controller do
   describe '#blacklisted' do
     it 'does not authenticate' do
-      expect(controller).not_to receive(:check_authentication)
+      expect(controller).not_to receive(:check_user_session)
       get :blacklisted, :imei => '123123'
     end
 
